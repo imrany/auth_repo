@@ -129,6 +129,29 @@ const load_user_profile = async (req, res) => {
     }
 }
 
+const delete_user_by_username=async(req,res)=>{
+    try{
+        let { username } =req.body;
+        let user_id = await get_user_id(req) // Get user id from JWT token by the helper function
+
+        if (!user_id) {
+            return res.status(400).json({ message: "Invalid Request", ok: false, })
+        }
+
+        let user =await UserModel.destroy({
+	        where: {
+		        username
+	        }
+        })
+
+        if(user){
+            return res.status(200).json({ message: "User profile deleted", ok: true, })
+        }
+    }catch(error){
+        console.log(error)
+        return res.status(500).json({ message: "Server Error" })
+    }
+}
 
 const update_user_profile = async (req, res) => {
     try {
@@ -172,5 +195,6 @@ module.exports = {
     logout,
     register,
     load_user_profile,
-    update_user_profile
+    update_user_profile,
+    delete_user_by_username
 }
