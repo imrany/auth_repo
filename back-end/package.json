@@ -1,10 +1,10 @@
 {
   "name": "back-end",
   "version": "1.0.0",
-  "description": "\"# auth_repo\"",
-  "main": "index.js",
+  "description": "authentication-and-authorisation-with-expressjs",
+  "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js"
   },
   "author": "imrany",
   "license": "MIT",
